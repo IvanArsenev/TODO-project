@@ -1,0 +1,5 @@
+com.example.mytodoapp.test.app-core-1.6.1-0 C:\Users\ETB\.gradle\caches\transforms-4\26d64f6966e2f52dbff3670276d74ac8\transformed\core-1.6.1\res
+com.example.mytodoapp.test.app-androidTest-1 C:\Users\ETB\AndroidStudioProjects\MyToDoApp\app\build\generated\res\resValues\androidTest\debug
+com.example.mytodoapp.test.app-mergeDebugAndroidTestResources-2 C:\Users\ETB\AndroidStudioProjects\MyToDoApp\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.example.mytodoapp.test.app-mergeDebugAndroidTestResources-3 C:\Users\ETB\AndroidStudioProjects\MyToDoApp\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.example.mytodoapp.test.app-debugAndroidTest-4 C:\Users\ETB\AndroidStudioProjects\MyToDoApp\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

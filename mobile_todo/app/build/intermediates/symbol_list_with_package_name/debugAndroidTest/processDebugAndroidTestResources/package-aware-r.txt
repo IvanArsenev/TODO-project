@@ -1,0 +1,3 @@
+com.example.mytodoapp.test
+style WhiteBackgroundDialogTheme
+style WhiteBackgroundTheme
