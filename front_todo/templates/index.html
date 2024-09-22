@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Trollo</title>
+    <link rel="stylesheet" href="./static/style.css">
+    <link rel="icon" href="./static/img/Logo_ico.png">
+</head>
+<body>
+    <!-- Импровизированный хедер -->
+    <div id="header">
+        <img src="./static/img/Logo.png" style="width: 10rem;">
+        <input type="file" id="fileInput" accept=".json">
+        <button id="saveJsonBtn">Сохранить JSON</button>
+    </div>
+    
+    <!-- Для создания темы -->
+    <div class="board-container">
+        <div id="board" class="board"></div>
+        <button class="add-column" onclick="addTheme()">Создать тему</button>
+    </div>
+
+    <!-- Модалка для изменения задачи -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Изменить задачу</h2>
+            <input type="text" id="taskName" placeholder="Название" style="width: 95%;" maxlength="64">
+            <select id="taskStatus">
+                <option value="Планируется">Планируется</option>
+                <option value="Выполняется">Выполняется</option>
+                <option value="Готово">Готово</option>
+            </select>
+            <textarea id="taskDescription" placeholder="Описание (не обязательно)" maxlength="256" style="width: 95%; height: 7em; resize: none;"></textarea>
+            <button onclick="saveTask()">Сохранить</button>
+        </div>
+    </div>
+
+    <!-- Модалка для создания темы или задачи -->
+    <div id="newItemModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="newItemTitle">Добавить элемент</h2>
+            <input type="text" id="newItemName" placeholder="Название" style="width: 95%;" maxlength="64">
+            <textarea id="newItemDescription" placeholder="Описание (не обязательно)" maxlength="256" style="width: 95%; height: 7em; resize: none;"></textarea>
+            <button onclick="saveNewItem()" style="width: 100%;">Создать</button>
+        </div>
+    </div>
+
+    <!-- Модалка для переименовывания темы -->
+    <div id="editThemeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Изменить тему</h2>
+            <input type="text" id="newThemeName" placeholder="Новое название" style="width: 95%;" maxlength="64">
+            <button onclick="saveTheme()">Сохранить</button>
+        </div>
+    </div>
+
+    <!-- Сделать красивый футер -->
+    <!-- Красиво не получилось, делать не буду -->
+    <!-- Просто напишу, что сделал Арсеньев Иван 02.09.2024 -->
+
+    <!-- Подключаем файл со скриптами JS -->
+    <script src="./static/script.js"></script>
+</body>
+</html>

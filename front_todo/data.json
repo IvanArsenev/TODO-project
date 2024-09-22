@@ -1,0 +1,30 @@
+{
+    "Backlog": {
+        "Task 1": {
+            "status": "Готово",
+            "description": "Description bla-bla-bla"
+        },
+        "Todo": {
+            "status": "Выполняется",
+            "description": "Description bla-bla-bla"
+        },
+        "Make maket": {
+            "status": "Планируется",
+            "description": "Description bla-bla-bla"
+        }
+    },
+    "Frontend": {
+        "Make server plan": {
+            "status": "Готово",
+            "description": "Description bla-bla-bla"
+        },
+        "Connect db": {
+            "status": "Выполняется",
+            "description": "Description bla-bla-bla"
+        },
+        "Pass project": {
+            "status": "Планируется",
+            "description": "Description bla-bla-bla"
+        }
+    }
+}
