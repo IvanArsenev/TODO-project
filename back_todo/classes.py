@@ -1,8 +1,9 @@
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Enum
 from sqlalchemy.ext.declarative import declarative_base
+from pydantic import BaseModel, Field, RootModel
 from sqlalchemy.orm import relationship
-from pydantic import BaseModel, Field
 from typing import Optional
+from typing import Dict
 from database import *
 import enum
 
@@ -41,7 +42,19 @@ class TaskRequest(BaseModel):
     description: str
     status: Optional[str] = Field(StatusEnum.PLAN)
 
-class TodoListFormat(BaseModel):
-    name: str
+
+
+
+class TaskModel(BaseModel):
+    id: int
+    status: str
+    description: str
+
+class ThemeModel(BaseModel):
+    id: int
+    tasks: Dict[str, TaskModel]
+
+class TodoListFormat(RootModel[Dict[str, ThemeModel]]):
+    pass
 
 Base.metadata.create_all(bind=create_engine(DATABASE_URL))

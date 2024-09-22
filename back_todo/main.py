@@ -2,6 +2,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, Path, HTTPException
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
 import sqlalchemy.orm as sqlorm
 from database import *
 from classes import *
@@ -10,10 +11,10 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Разрешить доступ с любых доменов
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],  # Разрешить все методы (GET, POST, PUT и т.д.)
-    allow_headers=["*"],  # Разрешить все заголовки
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 engine = create_engine(DATABASE_URL)
@@ -148,9 +149,49 @@ async def task_deleting(
 
 @app.get("/get_my_todo", tags=["All"])
 async def get_list():
-    return "OK"
+    db = SessionLocal()
+    data = {}
+    db_themes = db.query(Theme).all()
+    for theme in db_themes:
+        tasks_dict = {}
+        for task in theme.tasks:
+            tasks_dict[task.name] = {
+                "id": task.id,
+                "status": task.status,
+                "description": task.description
+            }
+        data[theme.name] = {
+            "id": theme.id,
+            "tasks": tasks_dict
+        }
+    return data
 
 
 @app.put("/reload_todo", tags=["All"])
 async def change_list(todo_list_request: TodoListFormat):
-    return "OK"
+    db = SessionLocal()
+    try:
+        db.query(Task).delete()
+        db.query(Theme).delete()
+        for theme_name, theme_data in todo_list_request.root.items():
+            new_theme = Theme(id=theme_data.id, name=theme_name)
+            db.add(new_theme)
+            db.commit()
+            db.refresh(new_theme)
+            for task_name, task_data in theme_data.tasks.items():
+                new_task = Task(
+                    id=task_data.id,
+                    name=task_name,
+                    status=task_data.status,
+                    description=task_data.description,
+                    theme_id=new_theme.id
+                )
+                db.add(new_task)
+
+        db.commit()
+        return {"status": "success", "message": "Data reloaded successfully"}
+    except Exception as e:
+        db.rollback()
+        return {"status": "error", "message": str(e)}
+    finally:
+        db.close()
