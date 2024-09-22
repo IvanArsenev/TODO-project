@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Блок для ввода темы и кнопки "Создать" -->
+    <LinearLayout
+        android:id="@+id/layout_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:paddingBottom="16dp">
+
+        <!-- Поле для ввода названия темы -->
+        <EditText
+            android:id="@+id/edit_text_theme_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Введите название темы" />
+
+        <!-- Кнопка "Создать" -->
+        <Button
+            android:id="@+id/button_create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Создать" />
+    </LinearLayout>
+    <!-- Блок, где будут отображаться темы -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/layout_themes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Кнопка для добавления темы, расположенная всегда внизу -->
+    <Button
+        android:id="@+id/button_add_theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Добавить тему"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/button_open_json"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Открыть JSON" />
+
+    <Button
+        android:id="@+id/button_choose_save_path"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Выбрать путь для сохранения" />
+
+</LinearLayout>
